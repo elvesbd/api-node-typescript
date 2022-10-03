@@ -1,2 +1,8 @@
 /node_modules
 yarn-error.log
+
+# ENV
+.env
+
+# BUILD
+/build

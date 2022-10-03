@@ -1,5 +1,3 @@
 import { server } from './server/server';
 
-const PORT = 4444;
-
-server.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+server.listen(process.env.PORT || 4444, () => console.log(`Server listening on port ${process.env.PORT}`));
