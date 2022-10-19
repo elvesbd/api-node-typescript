@@ -25,7 +25,6 @@ export const createBodyValidator: RequestHandler = async (req, res, next) => {
       if (!err.path) return;
       errors[err.path] = err.message;
     });
-
     return res.status(StatusCodes.BAD_REQUEST).json({ errors });
   }
 };
