@@ -31,6 +31,5 @@ export const createBodyValidator: RequestHandler = async (req, res, next) => {
 };
 
 export const create = async (req: Request<{}, {}, ICity>, res: Response) => {
-  console.log(req.body);
   return res.send('create').status(StatusCodes.CREATED);
 };
