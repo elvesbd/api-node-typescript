@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import { CitiesController } from '../../controllers';
 
-const router = Router();
+const route = Router();
 
 
-router.post('/cities', CitiesController.createValidation, CitiesController.create);
+route.post('/cities', CitiesController.createValidation, CitiesController.create);
 
-export { router };
+export { route };
