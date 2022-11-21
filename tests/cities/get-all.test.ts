@@ -2,7 +2,7 @@ import { StatusCodes } from 'http-status-codes';
 import { request } from '../jest.setup';
 
 describe('Cities - GetAll', () => {
-  it('should be an get all registers', async () => {
+  it('mus a get all registers', async () => {
     await request
       .post('/cities')
       .send({
