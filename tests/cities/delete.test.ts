@@ -21,8 +21,6 @@ describe('Cities - Delete', () => {
     const sut = await request
       .delete('/cities/99999')
       .send();
-    console.log(sut.body);
-
 
     expect(sut.statusCode).toBe(StatusCodes.INTERNAL_SERVER_ERROR);
     expect(sut.body).toHaveProperty('errors.default', 'Registro não encontrado');
