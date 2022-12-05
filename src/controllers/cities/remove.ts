@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { validation } from '../../shared/middlewares';
 import * as yup from 'yup';
+import { CitiesProvider } from '../../database/providers/cities';
 
 interface IParamProps {
   id?: number;
@@ -16,11 +17,14 @@ export const removeValidation = validation((getSchema) => ({
 }));
 
 export const remove = async (req: Request<IParamProps>, res: Response) => {
-  if (Number(req.params.id) === 99999) return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-    errors: {
-      default: 'Registro não encontrado'
-    }
-  });
+  const response = await CitiesProvider.remove(req.params.id);
 
-  return res.status(StatusCodes.NO_CONTENT).send();
+  if (response instanceof Error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      errors: {
+        default: response.message,
+      }
+    });
+  }
+  return res.status(StatusCodes.OK);
 };
