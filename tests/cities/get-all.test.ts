@@ -3,11 +3,12 @@ import { request } from '../jest.setup';
 
 describe('Cities - GetAll', () => {
   it('mus a get all registers', async () => {
-    await request
+    const result = await request
       .post('/cities')
       .send({
-        name: 'Caxias do Sul'
+        name: 'Fortaleza'
       });
+    
 
     const sut = await request
       .get('/cities')

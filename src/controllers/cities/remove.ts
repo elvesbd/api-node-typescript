@@ -17,14 +17,20 @@ export const removeValidation = validation((getSchema) => ({
 }));
 
 export const remove = async (req: Request<IParamProps>, res: Response) => {
-  const response = await CitiesProvider.remove(req.params.id);
-
-  if (response instanceof Error) {
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+  if (!req.params.id) {
+    return res.status(StatusCodes.BAD_REQUEST).json({
       errors: {
-        default: response.message,
+        default: 'id parameter not informed',
       }
     });
   }
-  return res.status(StatusCodes.OK);
+  const result = await CitiesProvider.remove(req.params.id);
+  if (result instanceof Error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      errors: {
+        default: result.message,
+      }
+    });
+  }
+  return res.status(StatusCodes.NO_CONTENT).send();
 };

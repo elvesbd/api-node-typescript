@@ -2,12 +2,12 @@ import { TableNames } from '../../enums/table-names';
 import { Knex } from '../../knex';
 import { ICity } from '../../models';
 
-export const getAll = async(page: number, limit: number, filter: string, id = 0): Promise<ICity[] | Error> => {
+export const getAll = async(page: number, limit: number, filter: string, id=0): Promise<ICity[] | Error> => {
   try {
     const result = await Knex(TableNames.CITY)
       .select('*')
       .where('id', Number(id))
-      .orWhere('name', 'like', `${filter}`)
+      .orWhere('name', 'like', `%${filter}%`)
       .offset((page - 1) * limit)
       .limit(limit);
    
@@ -19,7 +19,7 @@ export const getAll = async(page: number, limit: number, filter: string, id = 0)
 
       if (resultById) return [...result, resultById];
     }
-
+    
     return result;
   } catch (error) {
     console.log(error);

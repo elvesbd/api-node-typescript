@@ -22,7 +22,7 @@ describe('Cities - Update', () => {
       .send({ name: 'Caxias do Sul' });
 
     expect(sut.statusCode).toBe(StatusCodes.INTERNAL_SERVER_ERROR);
-    expect(sut.body).toHaveProperty('errors.default', 'Registro não encontrado');
+    expect(sut.body).toHaveProperty('errors.default');
   });
 });
 

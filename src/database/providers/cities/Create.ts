@@ -10,7 +10,7 @@ export const create = async(city: Omit<ICity, 'id'>): Promise<number | Error> =>
     } else if (typeof result === 'number') {
       return result;
     }
-
+    
     return new Error('Failed to create city');
   } catch (error) {
     console.log(error);
